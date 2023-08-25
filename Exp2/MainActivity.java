@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,plus,beq,minus,div,clr,mul;
     EditText res;
     Float v1,v2;
-    Boolean add,sub,bmulm,bdiv;
+    Boolean add=false,sub=false,bmulm=false,bdiv=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
