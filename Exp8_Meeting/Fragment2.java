@@ -1,32 +1,34 @@
 package com.example.meetinginfo;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 
-import android.content.Context;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import static androidx.core.content.ContextCompat.getSystemService;
+
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment1#newInstance} factory method to
+ * Use the {@link Fragment2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment1 extends Fragment {
-    EditText date,time,agenda;
-    DataBaseConn dbc;
-    CalendarView calendarView;
-    Button btn;
+public class Fragment2 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,8 +38,13 @@ public class Fragment1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    EditText date;
+    CalendarView cal;
+    Button btn1;
+    DataBaseConn dbc;
+    TextView t;
 
-    public Fragment1() {
+    public Fragment2() {
         // Required empty public constructor
     }
 
@@ -47,12 +54,11 @@ public class Fragment1 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment1.
+     * @return A new instance of fragment Fragment2.
      */
     // TODO: Rename and change types and number of parameters
-
-    public static Fragment1 newInstance(String param1, String param2) {
-        Fragment1 fragment = new Fragment1();
+    public static Fragment2 newInstance(String param1, String param2) {
+        Fragment2 fragment = new Fragment2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,53 +79,45 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_1 ,container,false);
-        date=view.findViewById(R.id.txtDate);
-        time=view.findViewById(R.id.txtTime);
-        agenda=view.findViewById(R.id.txtAgenda);
-        btn=view.findViewById(R.id.btn1);
-        calendarView=view.findViewById(R.id.mCal);
-        dbc=new DataBaseConn(getActivity()); //need to initialize here only
-        calendarView.setVisibility(View.INVISIBLE);
-        date.setOnClickListener(new View.OnClickListener() {
+        View view=inflater.inflate(R.layout.fragment_2,container,false);
+        date=view.findViewById(R.id.editTextDate);
+        cal=view.findViewById(R.id.calendarView);
+        btn1=view.findViewById(R.id.btn2);
+        dbc=new DataBaseConn(getActivity());
+        // t=()
+        cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onClick(View v) {
-                closeKeyBoard();
-                calendarView.setVisibility(View.VISIBLE);
-                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                    @Override
-                    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                        String d=dayOfMonth+"/"+(month+1)+"/"+year;
-                        date.setText(d);
-                        calendarView.setVisibility(View.INVISIBLE);
-                    }
-                });
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String d=dayOfMonth+"/"+(month+1)+"/"+year;
+                date.setText(d);
             }
         });
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
             @Override
             public void onClick(View v) {
-                String mdate,mTime,mAgenda;
-                mdate=date.getText().toString();
-                mTime=time.getText().toString();
-                mAgenda=agenda.getText().toString();
-                Boolean insert=dbc.insertvalue(mdate,mTime,mAgenda);
-                if(insert==true){
-                    Toast.makeText(getActivity(),"Data Inserted",Toast.LENGTH_SHORT).show();
+                String d1=date.getText().toString();
+                StringBuffer res=new StringBuffer();
+                Cursor c=dbc.fetch(d1);
+                int count=c.getCount();
+                c.moveToFirst();
+                if(count>0) {
+                    do {
+
+                        res.append(c.getString(c.getColumnIndex("agenda"))+"\t"+"at"+"\t"+c.getString(c.getColumnIndex("time")));
+                        res.append("\n");
+                        //med =(String.valueOf(c.getString(c.getColumnIndex("agenda"))));
+                        //med1 =(String.valueOf(c.getString(c.getColumnIndex("time"))));
+                    }while (c.moveToNext());
+                    Toast.makeText(getActivity(), res,
+                            Toast.LENGTH_LONG).show();
                 }
                 else
-                    Toast.makeText(getActivity(),"Data NOT Inserted",Toast.LENGTH_SHORT).show();
-//txt.setText("NOT INSERTED");
+                {
+                    Toast.makeText(getActivity(), "No Meeting on This Day....", Toast.LENGTH_LONG).show();
+                }
             }
         });
         return view;
-    }
-    private void closeKeyBoard() {
-        View view = getActivity().getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)
-                    getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
     }
 }
