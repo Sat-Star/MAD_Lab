@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D32F2F"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#D32F2F"
+            android:gravity="center_horizontal"
+            android:minHeight="?actionBarSize"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:textColor="@color/black"
+            android:textColorHighlight="#D32F2F"
+            android:textColorHint="#D32F2F"
+            android:textColorLink="#D32F2F"
+            android:textSize="34sp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:background="#FBC02D"
+            android:contentDescription="Tabs"
+            app:tabIndicatorColor="#FBC02D"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/black">
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="497dp"
+        android:layout_marginTop="143dp">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+
+</RelativeLayout>
