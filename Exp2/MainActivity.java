@@ -3,173 +3,168 @@ package com.example.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,plus,beq,minus,div,clr,mul;
-    EditText res;
-    Float v1,v2;
-    Boolean add=false,sub=false,bmulm=false,bdiv=false;
+
+    Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,BPlus,BEqual,BMul,BMinus,BDiv,BClr;
+    EditText Et_result;
+    float v1,v2;
+    boolean add=false,sub=false,mul=false,div=false;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        b1 = (Button)findViewById(R.id.b1);
-        b2 = (Button)findViewById(R.id.b2);
-        b3 = (Button)findViewById(R.id.b3);
-        b4 = (Button)findViewById(R.id.b4);
-        b5 = (Button)findViewById(R.id.b5);
-        b6 = (Button)findViewById(R.id.b6);
-        b7 = (Button)findViewById(R.id.b7);
-        b8 = (Button)findViewById(R.id.b8);
-        b9 = (Button)findViewById(R.id.b9);
-        b0 = (Button)findViewById(R.id.b0);
-        plus = (Button)findViewById(R.id.bplus);
-        minus = (Button)findViewById(R.id.bminus);
-        div = (Button)findViewById(R.id.bdiv);
-        beq = (Button)findViewById(R.id.beq);
-        clr = (Button)findViewById(R.id.bclr);
-
-        res = (EditText) findViewById(R.id.result);
-
-        b1.setOnClickListener(new View.OnClickListener(){
+        b1=(Button)findViewById(R.id.b1);
+        b2=(Button)findViewById(R.id.b2);
+        b3=(Button)findViewById(R.id.b3);
+        b4=(Button)findViewById(R.id.b4);
+        b5=(Button)findViewById(R.id.b5);
+        b6=(Button)findViewById(R.id.b6);
+        b7=(Button)findViewById(R.id.b7);
+        b8=(Button)findViewById(R.id.b8);
+        b9=(Button)findViewById(R.id.b9);
+        b0=(Button)findViewById(R.id.b0);
+        BEqual=(Button)findViewById(R.id.beq);
+        BPlus=(Button)findViewById(R.id.bplus);
+        BMinus=(Button)findViewById(R.id.bminus);
+        BDiv=(Button)findViewById(R.id.bdiv);
+        BMul=(Button)findViewById(R.id.bmul);
+        BClr = (Button)findViewById(R.id.bclr);
+        Et_result=(EditText)findViewById(R.id.result);
+        b1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"1");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"1");
             }
         });
-
-        b2.setOnClickListener(new View.OnClickListener(){
+        b2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"2");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"2");
             }
         });
-
-        b3.setOnClickListener(new View.OnClickListener(){
+        b3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"3");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"3");
             }
         });
-
-        b4.setOnClickListener(new View.OnClickListener(){
+        b4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"4");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"4");
             }
         });
-
-        b5.setOnClickListener(new View.OnClickListener(){
+        b5.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"5");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"5");
             }
         });
-
-        b6.setOnClickListener(new View.OnClickListener(){
+        b6.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"6");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"6");
             }
         });
-
-        b7.setOnClickListener(new View.OnClickListener(){
+        b7.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"7");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"7");
             }
         });
-
-        b8.setOnClickListener(new View.OnClickListener(){
+        b8.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"8");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"8");
             }
         });
-
-        b9.setOnClickListener(new View.OnClickListener(){
+        b9.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"9");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"9");
             }
         });
-
-        b0.setOnClickListener(new View.OnClickListener(){
+        b0.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                res.setText(res.getText()+"0");
+            public void onClick(View v) {
+                Et_result.setText(Et_result.getText()+"0");
             }
         });
-
-        plus.setOnClickListener(new View.OnClickListener() {
+        BPlus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                v1 = Float.parseFloat(res.getText()+"");
-                add = true;
-                res.setText(null);
+            public void onClick(View v) {
+                v1=Float.parseFloat(Et_result.getText()+"");
+                add=true;
+                Et_result.setText(null);
             }
         });
-
-        minus.setOnClickListener(new View.OnClickListener() {
+        BMinus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                v1 = Float.parseFloat(res.getText()+"");
-                sub = true;
-                res.setText(null);
+            public void onClick(View v) {
+                v1=Float.parseFloat(Et_result.getText()+"");
+                Et_result.setText(null);
+                sub=true;
             }
         });
-
-        mul.setOnClickListener(new View.OnClickListener() {
+        BMul.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                v1 = Float.parseFloat(res.getText()+"");
-                bmulm = true;
-                res.setText(null);
+            public void onClick(View v) {
+                v1=Float.parseFloat(Et_result.getText()+"");
+                Et_result.setText(null);
+                mul=true;
             }
         });
-
-        div.setOnClickListener(new View.OnClickListener() {
+        BDiv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                v1 = Float.parseFloat(res.getText()+"");
-                bdiv = true;
-                res.setText(null);
+            public void onClick(View v) {
+                v1=Float.parseFloat(Et_result.getText()+"");
+                Et_result.setText(null);
+                div=true;
             }
         });
-
-        beq.setOnClickListener(new View.OnClickListener() {
+        BEqual.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                v2 = Float.parseFloat(String.valueOf(res.getText()));
-                if(add){
-                    res.setText(v1+v2+"");
-                    add = false;
+            public void onClick(View v) {
+                v2=Float.parseFloat(String.valueOf(Et_result.getText()));
+                if(add)
+                {
+                    Et_result.setText(v1+v2+"");
+                    add=false;
                 }
-                if(sub){
-                    res.setText(v1-v2+"");
-                    sub = false;
+                if(sub)
+                {
+                    Et_result.setText(v1-v2+"");
+                    sub=false;
                 }
-                if(bmulm){
-                    res.setText(v1*v2+"");
-                    bmulm = false;
+                if(mul)
+                {
+                    Et_result.setText(v1*v2+"");
+                    mul=false;
                 }
-                if(bdiv){
-                    res.setText(v1/v2+"");
-                    bdiv = false;
+                if(div)
+                {
+                    Et_result.setText(v1/v2+"");
+                    div=false;
                 }
+
             }
         });
 
-        clr.setOnClickListener(new View.OnClickListener() {
+        BClr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                res.setText(null);
+                Et_result.setText(null);
             }
         });
-
 
     }
 }
