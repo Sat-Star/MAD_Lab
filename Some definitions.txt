@@ -1,0 +1,11 @@
+Android Development Cheat Sheet
+
+MainActivity : first screen that appears when a user launches the app.
+AppCompatActivity : allows apps to run on older devices
+annotation.SuppressLint : tells the Android Lint tool to ignore specific warnings. The Lint tool tells you when something in your code isn't optimal or may crash.
+Bundle savedInstanceState : used to store the data of an activity. For example, after an orientation change, the onCreate(Bundle savedInstanceState) function will call and recreate the activity and load all data from savedInstanceState.
+getIntent().getStringExtra : used to receive a value in a String type variable. The method uses the message_key.
+Pattern.compile() : compiles a regular expression passed as a string. It's used to match text or expressions against a regular expression more than once.
+putExtra() method can store any primitive data type directly with a (key,value) pair. For example, it can be used to set the text content that you want to share.
+CompoundButton : a button with two states, checked and unchecked. When the button is pressed or clicked, the state changes automatically.
+Spinner : a view that allows users to select one value from a set of values. It's similar to a dropdown list in other programming languages.
